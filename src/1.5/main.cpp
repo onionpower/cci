@@ -18,8 +18,8 @@ bool isOneCharAway(string lowest, string greatest) {
 
 bool isOneReplaced(string s1, string s2){
   auto oneFound = false;
-  for (int i = 0; i < origin.size(); i++) {
-    if (origin[i] != candidate[i]) {
+  for (int i = 0; i < s1.size(); i++) {
+    if (s1[i] != s2[i]) {
       if (oneFound) {
         return false;
       }
@@ -29,15 +29,15 @@ bool isOneReplaced(string s1, string s2){
   return true;
 }
 
-bool isOneAway(string origin, string candidate) {
-  if (origin.size() == candidate.size() - 1) {
-    return isOneCharAway(origin, candidate);
+bool isOneAway(string s1, string s2) {
+  if (s1.size() == s2.size() - 1) {
+    return isOneCharAway(s1, s2);
   }
-  if (origin.size() == candidate.size() + 1) {
-    return isOneCharAway(candidate, origin);
+  if (s1.size() == s2.size() + 1) {
+    return isOneCharAway(s2, s1);
   }
-  if (origin.size() == candidate.size()) {
-    return isOneReplaced(origin, candidate);
+  if (s1.size() == s2.size()) {
+    return isOneReplaced(s1, s2);
   }
   return false;
 }
