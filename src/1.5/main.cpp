@@ -16,6 +16,19 @@ bool isOneCharAway(string lowest, string greatest) {
   return true;
 }
 
+bool isOneReplaced(string s1, string s2){
+  auto oneFound = false;
+  for (int i = 0; i < origin.size(); i++) {
+    if (origin[i] != candidate[i]) {
+      if (oneFound) {
+        return false;
+      }
+      oneFound = true;
+    }
+  }
+  return true;
+}
+
 bool isOneAway(string origin, string candidate) {
   if (origin.size() == candidate.size() - 1) {
     return isOneCharAway(origin, candidate);
@@ -24,18 +37,14 @@ bool isOneAway(string origin, string candidate) {
     return isOneCharAway(candidate, origin);
   }
   if (origin.size() == candidate.size()) {
-    for (int i = 0; i < origin.size(); i++) {
-      if (origin[i] != candidate[i])
-        return false;
-    }
-    return true;
+    return isOneReplaced(origin, candidate);
   }
   return false;
 }
 
 int main() {
   auto origin = "origin";
-  string test[] = {"orgin", "orign", "origiin", "oriigin", "aorigin", "orin", "ogriin", "oligid", "origin"};
+  string test[] = {"orgin", "ogigin", "orign", "origiin", "oriigin", "aorigin", "orin", "ogriin", "oligid", "origin"};
   for (auto t : test) {
     cout << origin << " " << t << " " << isOneAway(origin, t) << endl;
   }
