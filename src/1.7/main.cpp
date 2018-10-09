@@ -16,7 +16,10 @@ void rotate(int *m, int r, int c) {
   for (int i = 0; i < r/2; i++) {
     for (int j = i; j < c - i*2; j++) {
       int tmp = m[i*c+j];
-      m[i*c+j] = m[(c-1-j)*c+i];
+      m[i*c+j] = m[(r-1)*c+j];//TODO
+      //TODO
+      m[j*c+c-i-1] = tmp;
+      // m[i*c+j] = m[(c-1-j)*c+i];
       // m[(c-1-j)*c+i] = m[c-i*2+j];
       // m[(c-1-i)*c+i] = 77;//m[c-i*2+j];
       // cout << tmp << endl;
