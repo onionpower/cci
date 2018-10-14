@@ -14,19 +14,19 @@ void print(int *m, int r, int c) {
 
 void rotate(int *m, int r, int c) {
   for (int i = 0; i < r/2; i++) {
-    for (int j = i; j < c - i*2; j++) {
+    cout << endl;
+    for (int j = i; j < c - i*2 - 1; j++) {
       int tmp = m[i*c+j];
-      m[i*c+j] = m[(r-1)*c+j];//TODO
-      //TODO
-      m[j*c+c-i-1] = tmp;
-      // m[i*c+j] = m[(c-1-j)*c+i];
-      // m[(c-1-j)*c+i] = m[c-i*2+j];
-      // m[(c-1-i)*c+i] = 77;//m[c-i*2+j];
-      // cout << tmp << endl;
+      m[i*c+j] = m[(r-1-j)*c+i];
+      m[(r-1-j)*c+i] = m[(r-1-i)*c+(c-1-j)];
+      m[(r-1-i)*c+(c-1-j)] = m[(j)*c+(c-1-i)];
+      m[(j)*c+(c-1-i)] = tmp;
+      // m[(j)*c+(c-1-j)] = m[(r-1-j)*c+(c-1-i)];
+      // m[(r-1-i)*c+j] = m[(r-j)*c+(r-i-1)];
+      // m[]
+      // cout << m[(r-1-i)*c+(c-1-j)] << endl;
     }
-    // cout << endl;
   }
-  // cout << endl;
 }
 
 bool assertEquals(int *m1, int *m2, int r, int c) {
@@ -40,6 +40,20 @@ bool assertEquals(int *m1, int *m2, int r, int c) {
   return true;
 }
 
+// 1,1 -> tmp
+// 2,1 -> 1,1
+// 2,2 -> 1,2
+// 1,2 -> 
+
+// 0,0 -> tmp
+// 3,0 -> 0,0
+// 3,3 -> 3,0
+// 0,3 -> 3,3
+
+// tmp -> 0,3
+// 1,0 -> tmp
+// 2,0 -> 1,0
+// 
 int main() {
   int m[4][4] = {
     {11,12,13,14},
