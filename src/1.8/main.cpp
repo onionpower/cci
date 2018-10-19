@@ -51,15 +51,15 @@ void nullifyCols(int *m, int r, int c) {
   }
 }
 
-void nullifyFirstRow(int *m, int c) {
+void nullifyRow(int *m, int row, int c) {
   for (int i = 0; i < c; i++) {
-    m[i] = 0;
+    m[row*c+i] = 0;
   }
 }
 
-void nullifyFirstCol(int *m, int r, int c) {
+void nullifyCol(int *m, int col, int r, int c) {
   for (int i = 0; i < r; i++) {
-    m[i*c] = 0;
+    m[i*c+col] = 0;
   }
 }
 
@@ -86,10 +86,10 @@ void nullify(int *m, int r, int c) {
   nullifyCols(m, r, c);
 
   if (firstRowHasZero) {
-    nullifyFirstRow(m, r);
+    nullifyRow(m, 0, r);
   }
   if (firstColHasZero) {
-    nullifyFirstCol(m, r, c);
+    nullifyCol(m, 0, c, r);
   }
 }
 
