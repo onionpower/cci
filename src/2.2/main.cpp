@@ -26,16 +26,17 @@ string toString(forward_list<int> &l) {
   return s;
 }
 
-forward_list<int>::iterator stepIn(forward_list<int>::iterator i, forward_list<int> &l, int &k) {
+forward_list<int>::iterator getKthIterator(forward_list<int>::iterator i, forward_list<int> &l, int &k) {
   forward_list<int>::iterator result;
-  if (++i != l.end())
+  if (i != l.end())
   {
-    result = stepIn(i, l, k);
+    auto new_i = i;
+    result = getKthIterator(++new_i, l, k);
   } else {
     return l.end();
   }
   k--;
-  if (k == 0)
+  if (k >= 0)
   {
     return i;
   } else {
@@ -45,7 +46,7 @@ forward_list<int>::iterator stepIn(forward_list<int>::iterator i, forward_list<i
 
 forward_list<int>::iterator fromKthToLast(forward_list<int> &l, int k) {
   auto i = l.begin();
-  auto kth = stepIn(i, l, k);
+  auto kth = getKthIterator(i, l, k);
   return kth;
 }
 
@@ -54,7 +55,7 @@ int main() {
   cout << toString(l) << endl;
   int k = 3;
   auto nl = fromKthToLast(l, k);
-  cout << "last " << k << " elemnts are ";
+  cout << "last " << k << " elements are ";
   while (nl != l.end()) {
     cout << *nl << " ";
     nl++;
