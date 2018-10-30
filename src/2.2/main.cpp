@@ -52,8 +52,9 @@ forward_list<int>::iterator fromKthToLast(forward_list<int> &l, int k) {
 
 int main() {
   forward_list<int> l = {1, 2, 3, 4, 5, 6};
-  cout << toString(l) << endl;
-  int k = 3;
+  cout << toString(l) << endl;  
+  int k;
+  cin >> k;
   auto nl = fromKthToLast(l, k);
   cout << "last " << k << " elements are ";
   while (nl != l.end()) {
