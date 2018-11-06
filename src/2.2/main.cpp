@@ -15,8 +15,7 @@ string toString(forward_list<int>::iterator &i, forward_list<int> l) {
 }
 
 string toString(forward_list<int> &l) {
-  string s;
-  
+  string s;  
   int size = 0;
   for(auto i = l.begin(); i != l.end(); i++)
   {
@@ -62,8 +61,19 @@ forward_list<int>::iterator fromKthToLastRecursive(forward_list<int> &l, int k) 
 
 forward_list<int>::iterator fromKthToLast(forward_list<int> &l, int k) {
   auto i = l.begin();
-  auto kth = getKthIterator(i, l, k);
-  return kth;
+  auto ir = l.begin();
+  while(ir != l.end() && k > 0) {
+    ir++;
+    k--;
+  }
+  if (ir == l.end()) {
+    return i;
+  }
+  while (ir != l.end()) {
+    ir++;
+    i++;
+  }
+  return i;
 }
 
 int main() {
@@ -75,6 +85,8 @@ int main() {
   cout << "last " << k << " elements are ";
   cout << toString(nl, l) << endl;
 
-  // nl = fromKthToLast(l, k);
+  nl = fromKthToLast(l, k);
+  cout << "last " << k << " elements are ";
+  cout << toString(nl, l) << endl;
   return 0;
 }
