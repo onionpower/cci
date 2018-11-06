@@ -4,6 +4,16 @@
 
 using namespace std;
 
+string toString(forward_list<int>::iterator &i, forward_list<int> l) {
+  string s;
+  while (i != l.end()) {
+    s.append(to_string(*i));
+    s.append(" ");
+    i++;
+  }
+  return s;
+}
+
 string toString(forward_list<int> &l) {
   string s;
   
@@ -44,6 +54,12 @@ forward_list<int>::iterator getKthIterator(forward_list<int>::iterator i, forwar
   }
 }
 
+forward_list<int>::iterator fromKthToLastRecursive(forward_list<int> &l, int k) {
+  auto i = l.begin();
+  auto kth = getKthIterator(i, l, k);
+  return kth;
+}
+
 forward_list<int>::iterator fromKthToLast(forward_list<int> &l, int k) {
   auto i = l.begin();
   auto kth = getKthIterator(i, l, k);
@@ -55,12 +71,10 @@ int main() {
   cout << toString(l) << endl;  
   int k;
   cin >> k;
-  auto nl = fromKthToLast(l, k);
+  auto nl = fromKthToLastRecursive(l, k);
   cout << "last " << k << " elements are ";
-  while (nl != l.end()) {
-    cout << *nl << " ";
-    nl++;
-  }
-  cout << endl;
+  cout << toString(nl, l) << endl;
+
+  // nl = fromKthToLast(l, k);
   return 0;
 }
